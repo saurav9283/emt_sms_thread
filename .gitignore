@@ -1,0 +1,5 @@
+/node_modules
+/emv
+.env
+.insta_alert_mtn_ng.sql
+/insta_alert_mtn_ng.sql

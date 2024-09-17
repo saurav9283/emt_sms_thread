@@ -1,0 +1,11 @@
+For GLO networks use 'opid' = '010'
+
+For MTN networks use 'opid' = '011'
+
+
+For AIRTEL networks use 'opid' = '012'
+
+For EMTS(9Mobile) networks use 'opid' = '013'
+
+// const jdon = { "sid": "testing-2024-02-01", "config": "api", "ak": process.env.PAYMENT_API_KEY, "apid": "emtnetworks", "rc": "1", "type": "7" }
+request to check airtime balance ->
