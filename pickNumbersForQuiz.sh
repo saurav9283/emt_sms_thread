@@ -27,7 +27,7 @@ echo "npfl football done"
 
 echo "PICK ACTIVE USER FOR GOAL ALERTS"
 
-mysql -u visiontrek -h 5.189.166.187 -p'I@J2J$J9#q3' -D insta_alert_mtn_ng -e "INSERT INTO insta_alert_mtn_ng.tbl_sms_pending (msisdn, type_event, trxid, service, packType, record_status, STATUS, network, pick_date_time, processDate, processDateTime) SELECT msisdn, type_event, trxid, service, packType, '0' AS record_status, 'PENDING' AS STATUS, network, NOW(), NOW(), NOW() FROM insta_alert_mtn_ng.tbl_subscription WHERE  service LIKE '%Goal%' AND active = 'TRUE' AND NOT msisdn IN (SELECT msisdn FROM tbl_sms_pending WHERE service LIKE '%Goal%')"
+mysql -u visiontrek -h 5.189.166.187 -p'I@J2J$J9#q3' -D insta_alert_mtn_ng -e "INSERT INTO insta_alert_mtn_ng.tbl_sms_pending (msisdn, type_event, trxid, service, packType, record_status, STATUS, network, pick_date_time, processDate, processDateTime) SELECT msisdn, type_event, trxid, service, packType, '0' AS record_status, 'PENDING' AS STATUS, network, NOW(), NOW(), NOW() FROM insta_alert_mtn_ng.tbl_subscription WHERE  service LIKE '%Goal%' AND DATE(next_billed_date)>=CURDATE() AND NOT msisdn IN (SELECT msisdn FROM tbl_sms_pending WHERE service LIKE '%Goal%')"
 
 echo "GOAL ALERT DONE"
 
