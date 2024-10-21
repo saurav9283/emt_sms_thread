@@ -36,12 +36,12 @@ async function sendQuestions() {
         try {
           const { msisdn, trxid, service, type_event } = sub;
           const [paramsError, smsParams] = await getRandomWelcomeQuestion(msisdn);
-          console.log('smsParams:=-=-=-=-=- ', smsParams);
+
+
           if (paramsError) {
             return `param error => ${msisdn}`;
           }
           const sms = smsParams.message;
-          // console.log('sms: ', sms);
           const smsPayload = {
             pisisid: process.env.FOOTBALL_PISISID,
             msisdn,
@@ -49,7 +49,6 @@ async function sendQuestions() {
             trxid,
           };
           const [smsError, success] = await sendSms(smsPayload);
-          // console.log('success: ', success);
           if (smsError) {
              return `[error]_quiz => ${msisdn} : ${smsError.message}`;
           }
