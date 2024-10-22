@@ -188,10 +188,10 @@ async function sendLiveScores(liveScore) {
       let page = 1;
       const limit = 50;
       while (hasMorePendingSubscribers) {
-        const offset =  (page - 1) * limit;
+        const offset = (page - 1) * limit;
         console.log("size", i);
 
-        const [error1, pendingSubscribers] = await getAllMsisdn(fixture_id,offset);
+        const [error1, pendingSubscribers] = await getAllMsisdn(fixture_id, offset);
 
         if (error1) {
           console.error(`Error fetching subscribers: ${error1}`);
@@ -217,6 +217,7 @@ async function sendLiveScores(liveScore) {
               message: sms,
             };
             console.log(smsPayload, "smsPayload=-=")
+
             // sending sms now
             const [smsError, success] = await sendSms(smsPayload);
             console.log(smsError);
@@ -250,13 +251,13 @@ async function sendLiveScores(liveScore) {
   }
 }
 
-async function getAllMsisdn(fixture_id,offset) {
+async function getAllMsisdn(fixture_id, offset) {
   console.log("FIX ID IS ", fixture_id);
 
   try {
     const query = process.env.PICK_SMS_TO_SEND_GOAL_ALERT
-    .replace("<FIXTURE_ID>", fixture_id)
-    .replace("<OFFSET>", offset);
+      .replace("<FIXTURE_ID>", fixture_id)
+      .replace("<OFFSET>", offset);
     const [rows] = await promise_pool.query(query);
     return [null, rows];
   } catch (error) {
@@ -341,7 +342,21 @@ async function updateMatchScoreInDB(fixture_id, currentScore, match_status, home
 }
 
 
-async function sendNotiification({ fixture_id, sms }) {
-
-
-} 
+// async function inserttestinfsmstable(smsPayload) {
+//   try {
+//     const query = `
+//       INSERT INTO testing_sms_alert (msisdn, trxid, pisisid, message)
+//       VALUES (?, ?, ?, ?)
+//     `;
+//     const [result] = await promise_pool.query(query, [
+//       smsPayload.msisdn,
+//       smsPayload.trxid,
+//       smsPayload.pisisid,
+//       smsPayload.message,
+//     ]);
+//     return [null, result];
+//   } catch (error) {
+//     console.error(`Error inserting smsPayload: ${error}`);
+//     return [error];
+//   }
+// }
