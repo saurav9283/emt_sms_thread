@@ -220,7 +220,7 @@ async function sendLiveScores(liveScore) {
 
             // sending sms now
             const [smsError, success] = await sendSms(smsPayload);
-            console.log(smsError);
+            // console.log(smsError);
             if (smsError) {
               return `[error]_live_alert => ${msisdn} : ${smsError.message}`;
             }
