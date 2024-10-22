@@ -111,7 +111,7 @@ async function sendLiveScores(liveScore) {
     const currentScore = `${homeGoals}-${awayGoals}`;
     console.log('currentScore: ', currentScore);
 
-    if (dbScore !== currentScore || matchStatus === "Match Finished") {
+    if (dbScore !== currentScore || matchStatus === "Match Finished" || matchStatus === "Match Postponed") {
       // Update the score in the database if it's different
       await updateMatchScoreInDB(fixture_id, currentScore, matchStatus, homeGoals, awayGoals);
       // sms responses -> -> -> -> -> ->- >-> ->
